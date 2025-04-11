@@ -3,7 +3,10 @@ opencv-python-headless
 Pillow
 numpy
 matplotlib
+seaborn
 scikit-learn
 scikit-image
-seaborn
+xgboost
+tensorflow
+torch
 
