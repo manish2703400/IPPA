@@ -23,22 +23,26 @@ import io
 import seaborn as sns
 import matplotlib.pyplot as plt
 
-sns.set_style("whitegrid")
 
 
-uploaded = files.upload()
+st.title("Image Upload and Display")
 
-# Example: load and display the first uploaded image
-for filename in uploaded.keys():
-    print(f'User uploaded file: {filename}')
+# Upload an image using Streamlit's uploader
+uploaded_file = st.file_uploader("Upload an image", type=["jpg", "jpeg", "png"])
 
-# Open the image using PIL
-image = Image.open(io.BytesIO(uploaded[filename])) 
+if uploaded_file is not None:
+    # Open the image using PIL
+    image = Image.open(uploaded_file)
 
-# Display the image
-plt.imshow(image)
-plt.axis('off')
-plt.show()
+    # Display the image
+    st.image(image, caption="Uploaded Image", use_column_width=True)
+
+    # Optional: Display using matplotlib if needed
+    st.write("Matplotlib view:")
+    fig, ax = plt.subplots()
+    ax.imshow(image)
+    ax.axis('off')
+    st.pyplot(fig)
 
 """ **LOG TRANSFORMATION**"""
 
