@@ -5,5 +5,5 @@ numpy
 matplotlib
 scikit-learn
 scikit-image
-
+seaborn
 
