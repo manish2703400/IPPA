@@ -18,7 +18,6 @@ import seaborn as sns
 
 """**IMPORT IMAGE**"""
 
-from google.colab import files
 from PIL import Image
 import io
 import seaborn as sns
