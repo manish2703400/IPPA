@@ -67,5 +67,22 @@ if uploaded_file is not None:
 
     # GAUSSIAN NOISE BLURRING
     st.subheader("Gaussian Noise Blurring")
-    blurred = cv2.GaussianBlur(img_np_color, ksize=(25, 25), sigmaX=0)
+    blurred = cv2.GaussianBlur(img_np_color, ksize=(25, 25), sigmaX=0)  
     st.image(blurred, caption="Gaussian Blurred Image", use_column_width=True, clamp=True)
+
+    # CANNY EDGE DETECTION
+    st.subheader("Canny Edge Detection")
+    blurred_for_canny = cv2.GaussianBlur(img_np_gray, (5, 5), 1.4)
+    st.image(blurred_for_canny, caption="Step 1: Gaussian Smoothing", use_column_width=True, clamp=True)
+
+    sobelx = cv2.Sobel(blurred_for_canny, cv2.CV_64F, 1, 0, ksize=3)
+    sobely = cv2.Sobel(blurred_for_canny, cv2.CV_64F, 0, 1, ksize=3)
+    magnitude = np.sqrt(sobelx**2 + sobely**2)
+    magnitude_uint8 = cv2.convertScaleAbs(magnitude)
+    st.image(magnitude_uint8, caption="Step 2: Gradient Magnitude (Sobel)", use_column_width=True, clamp=True)
+
+    direction = np.arctan2(sobely, sobelx) * 180 / np.pi
+    direction[direction < 0] += 180
+
+    edges = cv2.Canny(blurred_for_canny, 100, 200)
+    st.image(edges, caption="Step 3: Final Canny Edge Detection Output", use_column_width=True, clamp=True) 
