@@ -23,7 +23,7 @@ if uploaded_file is not None:
 
     # LOG TRANSFORMATION
     st.subheader("Log Transformation")
-    c = st.slider("C_Value", min_value=0.0, max_value=1.0, value=0.3)
+    c = st.slider("C_Value", min_value=1.0, max_value=150.0, value=0.3)
     log_image = c * np.log(1 + img_np_gray)
     log_image = np.array(log_image, dtype=np.uint8)
     st.image(log_image, caption="Log Transformed Image", use_column_width=True, clamp=True)
