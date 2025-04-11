@@ -36,8 +36,8 @@ if uploaded_file is not None:
     axs[0].set_title("Original Histogram")
     axs[1].hist(equalized_img.ravel(), bins=256, range=(0, 256), color='green', alpha=0.7)
     axs[1].set_title("Equalized Histogram")
-    st.image(equalized_img, caption="Equalized Image", use_column_width=True, clamp=True)
     st.pyplot(fig)
+    st.image(equalized_img, caption="Equalized Image", use_column_width=True, clamp=True)
 
     # IMAGE ROTATION
     st.subheader("Image Rotation")
